@@ -5,6 +5,8 @@
   },
   "nav": {
     "home": "Inicio",
+    "chat": "Chat",
+    "team": "Equipo",
     "signOut": "Cerrar sesión"
   },
   "language": {
@@ -47,17 +49,84 @@
     "manager": "Gerente",
     "employee": "Empleado"
   },
+  "payGroup": {
+    "group_1_15": "1–15 / 16–fin de mes",
+    "group_5_20": "5–20 / 21–4"
+  },
+  "rounding": {
+    "cent": "Al centavo",
+    "dollar": "Al dólar"
+  },
+  "permissions": {
+    "view_payroll": "Ver nómina",
+    "manage_attendance": "Gestionar asistencia",
+    "manage_events": "Gestionar eventos",
+    "manage_vendors": "Gestionar proveedores",
+    "log_cash": "Registrar efectivo",
+    "log_advances": "Registrar adelantos",
+    "approve_inventory": "Aprobar inventario",
+    "create_channels": "Crear canales"
+  },
   "home": {
     "welcome": "Bienvenido, {{name}}",
     "yourRole": "Tu rol",
-    "phase0": "Base lista",
-    "phase0Body": "La autenticación, los roles, el idioma y el modo sin conexión están configurados. Los módulos de funciones llegan en las próximas fases.",
+    "phase1": "El equipo y el chat están activos",
+    "phase1Body": "Tu equipo, los canales y la mensajería están listos. La asistencia, los eventos y la nómina llegan en las próximas fases.",
+    "chatBlurb": "Comunícate con tu equipo en canales — general, gerencia y grupos personalizados.",
+    "teamBlurb": "Invita compañeros, define roles y permisos, y gestiona la lista del equipo.",
     "noProfile": "Tu cuenta aún no tiene perfil. Pídele al propietario que termine de configurarte."
+  },
+  "team": {
+    "invite": "Invitar",
+    "inviteTitle": "Invitar compañero",
+    "editTitle": "Editar compañero",
+    "name": "Nombre",
+    "phone": "Teléfono",
+    "email": "Correo",
+    "role": "Rol",
+    "payGroup": "Grupo de pago",
+    "rounding": "Redondeo",
+    "hireDate": "Fecha de contratación",
+    "none": "Ninguno",
+    "showPermissions": "Mostrar permisos",
+    "hidePermissions": "Ocultar permisos",
+    "inactive": "Inactivo",
+    "deactivate": "Desactivar",
+    "reactivate": "Reactivar",
+    "errors": {
+      "required": "El nombre y el teléfono son obligatorios."
+    }
+  },
+  "chat": {
+    "members": "Miembros",
+    "add": "Agregar",
+    "remove": "Quitar",
+    "empty": "Aún no hay mensajes. ¡Saluda!",
+    "deleted": "Mensaje eliminado",
+    "send": "Enviar",
+    "messagePlaceholder": "Escribe un mensaje…",
+    "selectChannel": "Selecciona un canal para empezar a chatear.",
+    "newChannel": "Nuevo canal",
+    "channelNamePlaceholder": "Nombre del canal",
+    "channelNames": {
+      "general": "General",
+      "management": "Gerencia"
+    },
+    "system": {
+      "memberAdded": "{{actor}} agregó a {{target}}",
+      "memberRemoved": "{{actor}} quitó a {{target}}"
+    }
   },
   "common": {
     "loading": "Cargando…",
     "retry": "Reintentar",
     "cancel": "Cancelar",
-    "save": "Guardar"
+    "save": "Guardar",
+    "saving": "Guardando…",
+    "create": "Crear",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "close": "Cerrar",
+    "back": "Atrás"
   }
 }

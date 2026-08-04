@@ -98,3 +98,55 @@ export function hasPermission(
 ): boolean {
   return Boolean(profile?.permissions?.[key])
 }
+
+// --- Chat (Phase 1) -------------------------------------------------------
+
+export type ChannelType = 'management' | 'general' | 'custom' | 'event' | 'dm'
+
+export type MessageKind = 'user' | 'system'
+
+export interface Channel {
+  id: string
+  name: string
+  type: ChannelType
+  event_id: string | null
+  created_by: string | null
+  archived: boolean
+  created_at: string
+}
+
+/** A channel plus client-side view state (unread count). */
+export interface ChannelWithMeta extends Channel {
+  unread: number
+}
+
+export interface ChannelMember {
+  channel_id: string
+  user_id: string
+  added_by: string | null
+  added_at: string
+}
+
+/** Structured payload for localized system messages (member added/removed). */
+export interface SystemEvent {
+  type: 'member_added' | 'member_removed'
+  actor: string | null
+  target: string | null
+}
+
+export interface Message {
+  id: string
+  channel_id: string
+  sender_id: string | null
+  kind: MessageKind
+  body: string | null
+  attachment_url: string | null
+  system_event: SystemEvent | null
+  deleted: boolean
+  created_at: string
+}
+
+/** Channel types that are auto-managed and cannot be renamed/deleted by hand. */
+export function isAutoChannel(type: ChannelType): boolean {
+  return type === 'general' || type === 'management'
+}

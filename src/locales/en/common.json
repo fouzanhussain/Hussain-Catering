@@ -5,6 +5,8 @@
   },
   "nav": {
     "home": "Home",
+    "chat": "Chat",
+    "team": "Team",
     "signOut": "Sign out"
   },
   "language": {
@@ -47,17 +49,84 @@
     "manager": "Manager",
     "employee": "Employee"
   },
+  "payGroup": {
+    "group_1_15": "1st–15th / 16th–EOM",
+    "group_5_20": "5th–20th / 21st–4th"
+  },
+  "rounding": {
+    "cent": "Nearest cent",
+    "dollar": "Nearest dollar"
+  },
+  "permissions": {
+    "view_payroll": "View payroll",
+    "manage_attendance": "Manage attendance",
+    "manage_events": "Manage events",
+    "manage_vendors": "Manage vendors",
+    "log_cash": "Log cash",
+    "log_advances": "Record advances",
+    "approve_inventory": "Approve inventory",
+    "create_channels": "Create channels"
+  },
   "home": {
     "welcome": "Welcome, {{name}}",
     "yourRole": "Your role",
-    "phase0": "Foundation ready",
-    "phase0Body": "Authentication, roles, language, and offline shell are set up. Feature modules arrive in the next phases.",
+    "phase1": "Team & chat are live",
+    "phase1Body": "Your team, channels, and messaging are ready. Attendance, events, and payroll arrive in the next phases.",
+    "chatBlurb": "Message your team in channels — general, management, and custom groups.",
+    "teamBlurb": "Invite teammates, set roles and permissions, and manage the roster.",
     "noProfile": "Your account has no profile yet. Ask the owner to finish setting you up."
+  },
+  "team": {
+    "invite": "Invite",
+    "inviteTitle": "Invite teammate",
+    "editTitle": "Edit teammate",
+    "name": "Name",
+    "phone": "Phone",
+    "email": "Email",
+    "role": "Role",
+    "payGroup": "Pay group",
+    "rounding": "Rounding",
+    "hireDate": "Hire date",
+    "none": "None",
+    "showPermissions": "Show permissions",
+    "hidePermissions": "Hide permissions",
+    "inactive": "Inactive",
+    "deactivate": "Deactivate",
+    "reactivate": "Reactivate",
+    "errors": {
+      "required": "Name and phone number are required."
+    }
+  },
+  "chat": {
+    "members": "Members",
+    "add": "Add",
+    "remove": "Remove",
+    "empty": "No messages yet. Say hello!",
+    "deleted": "Message deleted",
+    "send": "Send",
+    "messagePlaceholder": "Type a message…",
+    "selectChannel": "Select a channel to start chatting.",
+    "newChannel": "New channel",
+    "channelNamePlaceholder": "Channel name",
+    "channelNames": {
+      "general": "General",
+      "management": "Management"
+    },
+    "system": {
+      "memberAdded": "{{actor}} added {{target}}",
+      "memberRemoved": "{{actor}} removed {{target}}"
+    }
   },
   "common": {
     "loading": "Loading…",
     "retry": "Retry",
     "cancel": "Cancel",
-    "save": "Save"
+    "save": "Save",
+    "saving": "Saving…",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "close": "Close",
+    "back": "Back"
   }
 }

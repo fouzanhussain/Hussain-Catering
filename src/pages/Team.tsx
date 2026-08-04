@@ -10,11 +10,13 @@ import {
   type Role,
   type PayGroup,
   type RoundingMode,
+  type SalaryBasis,
   type UserProfile,
 } from '../lib/types'
 
 const ROLES: Role[] = ['owner', 'manager', 'employee']
 const PAY_GROUPS: PayGroup[] = ['group_1_15', 'group_5_20']
+const PAY_BASES: SalaryBasis[] = ['per_day', 'hourly', 'semi_monthly_salary']
 const ROUNDING: RoundingMode[] = ['cent', 'dollar']
 
 /** Owner-only team & roles management (spec §4.1). */
@@ -116,6 +118,7 @@ function UserForm({
   const [role, setRole] = useState<Role>(user?.role ?? 'employee')
   const [language, setLanguage] = useState(user?.language ?? 'en')
   const [payGroup, setPayGroup] = useState<PayGroup | ''>(user?.pay_group ?? '')
+  const [payBasis, setPayBasis] = useState<SalaryBasis | ''>(user?.pay_basis ?? '')
   const [rounding, setRounding] = useState<RoundingMode>(user?.rounding_mode ?? 'cent')
   const [hireDate, setHireDate] = useState(user?.hire_date ?? '')
   const [perms, setPerms] = useState<Permissions>(
@@ -154,6 +157,7 @@ function UserForm({
       language,
       permissions: overrides,
       pay_group: payGroup || null,
+      pay_basis: payBasis || null,
       rounding_mode: rounding,
       hire_date: hireDate || null,
     }
@@ -252,6 +256,24 @@ function UserForm({
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
+              <label htmlFor="uf-basis" className={labelCls}>
+                {t('team.payBasis')}
+              </label>
+              <select
+                id="uf-basis"
+                className={field}
+                value={payBasis}
+                onChange={(e) => setPayBasis(e.target.value as SalaryBasis | '')}
+              >
+                <option value="">{t('team.none')}</option>
+                {PAY_BASES.map((b) => (
+                  <option key={b} value={b}>
+                    {t(`payBasis.${b}`)}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
               <label htmlFor="uf-paygroup" className={labelCls}>
                 {t('team.payGroup')}
               </label>
@@ -269,6 +291,8 @@ function UserForm({
                 ))}
               </select>
             </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
             <div>
               <label htmlFor="uf-round" className={labelCls}>
                 {t('team.rounding')}

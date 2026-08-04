@@ -6,6 +6,7 @@
   "nav": {
     "home": "Inicio",
     "chat": "Chat",
+    "attendance": "Asistencia",
     "team": "Equipo",
     "signOut": "Cerrar sesión"
   },
@@ -57,6 +58,11 @@
     "cent": "Al centavo",
     "dollar": "Al dólar"
   },
+  "payBasis": {
+    "per_day": "Por día",
+    "hourly": "Por hora",
+    "semi_monthly_salary": "Salario quincenal"
+  },
   "permissions": {
     "view_payroll": "Ver nómina",
     "manage_attendance": "Gestionar asistencia",
@@ -70,9 +76,10 @@
   "home": {
     "welcome": "Bienvenido, {{name}}",
     "yourRole": "Tu rol",
-    "phase1": "El equipo y el chat están activos",
-    "phase1Body": "Tu equipo, los canales y la mensajería están listos. La asistencia, los eventos y la nómina llegan en las próximas fases.",
+    "phase2": "La asistencia está activa",
+    "phase2Body": "Marca la lista diaria, controla las horas del personal por hora y exporta resúmenes. Los eventos y la nómina llegan en las próximas fases.",
     "chatBlurb": "Comunícate con tu equipo en canales — general, gerencia y grupos personalizados.",
+    "attendanceBlurb": "Marca la lista diaria, o revisa tus propios días y horas.",
     "teamBlurb": "Invita compañeros, define roles y permisos, y gestiona la lista del equipo.",
     "noProfile": "Tu cuenta aún no tiene perfil. Pídele al propietario que termine de configurarte."
   },
@@ -85,6 +92,7 @@
     "email": "Correo",
     "role": "Rol",
     "payGroup": "Grupo de pago",
+    "payBasis": "Base de pago",
     "rounding": "Redondeo",
     "hireDate": "Fecha de contratación",
     "none": "Ninguno",
@@ -115,6 +123,42 @@
     "system": {
       "memberAdded": "{{actor}} agregó a {{target}}",
       "memberRemoved": "{{actor}} quitó a {{target}}"
+    }
+  },
+  "attendance": {
+    "tabs": {
+      "roster": "Lista diaria",
+      "history": "Historial"
+    },
+    "status": {
+      "present": "Presente",
+      "absent": "Ausente",
+      "half_day": "Medio día",
+      "excused_paid": "Justificado (pagado)",
+      "excused_unpaid": "Justificado (sin pago)"
+    },
+    "statusLabel": "Estado",
+    "checkIn": "Entrada",
+    "checkOut": "Salida",
+    "breakMinutes": "Descanso (min)",
+    "break": "descanso",
+    "hours": "Horas",
+    "hoursShort": "h",
+    "editReason": "Motivo del cambio (opcional)",
+    "saved": "Guardado",
+    "locked": "Bloqueado",
+    "marked": "{{count}} de {{total}} marcados",
+    "name": "Nombre",
+    "date": "Fecha",
+    "daysCredited": "Días",
+    "hoursThisMonth": "Horas",
+    "exportCsv": "Exportar CSV",
+    "noRecords": "No hay asistencia registrada este mes.",
+    "noEmployees": "No hay empleados activos para mostrar.",
+    "selectEmployee": "Selecciona un empleado…",
+    "pickEmployeePrompt": "Elige un empleado para ver su historial.",
+    "errors": {
+      "timesRequired": "Se requieren las horas de entrada y salida para el personal por hora marcado como presente."
     }
   },
   "common": {

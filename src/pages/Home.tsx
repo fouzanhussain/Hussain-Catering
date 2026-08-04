@@ -38,6 +38,18 @@ export default function Home() {
           </p>
         </Link>
 
+        <Link
+          to="/attendance"
+          className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
+        >
+          <h2 className="font-semibold text-slate-900 dark:text-slate-100">
+            {t('nav.attendance')}
+          </h2>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+            {t('home.attendanceBlurb')}
+          </p>
+        </Link>
+
         {profile.role === 'owner' && (
           <Link
             to="/team"
@@ -52,8 +64,8 @@ export default function Home() {
       </div>
 
       <section className="mt-6 rounded-xl border border-teal-200 bg-teal-50 p-5 dark:border-teal-900 dark:bg-teal-950/40">
-        <h2 className="font-semibold text-teal-900 dark:text-teal-200">{t('home.phase1')}</h2>
-        <p className="mt-1 text-sm text-teal-800 dark:text-teal-300">{t('home.phase1Body')}</p>
+        <h2 className="font-semibold text-teal-900 dark:text-teal-200">{t('home.phase2')}</h2>
+        <p className="mt-1 text-sm text-teal-800 dark:text-teal-300">{t('home.phase2Body')}</p>
       </section>
     </div>
   )

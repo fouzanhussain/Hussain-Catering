@@ -221,3 +221,76 @@ export interface CateringEvent {
 export function isEventClosed(status: EventStatus): boolean {
   return status === 'completed' || status === 'cancelled'
 }
+
+// --- Payroll (Phase 4) ----------------------------------------------------
+
+export type AdvanceMethod = 'cash' | 'zelle' | 'other'
+
+export type PayPeriodStatus = 'open' | 'review' | 'locked' | 'paid'
+
+export interface SalaryRate {
+  id: string
+  user_id: string
+  basis: SalaryBasis
+  amount: number
+  effective_date: string
+  created_by: string | null
+  created_at: string
+}
+
+export interface PayPeriod {
+  id: string
+  pay_group: PayGroup
+  start_date: string
+  end_date: string
+  payout_date: string
+  status: PayPeriodStatus
+  locked_at: string | null
+  locked_by: string | null
+  created_at: string
+}
+
+export interface PayrollEntry {
+  id: string
+  pay_period_id: string
+  user_id: string
+  basis_snapshot: SalaryBasis | null
+  rate_snapshot: number | null
+  present_days: number
+  half_days: number
+  absent_days: number
+  excused_paid: number
+  excused_unpaid: number
+  total_hours: number
+  gross: number
+  advances_deducted: number
+  adjustments_total: number
+  net: number
+  carryover: number
+  rounding_mode_snapshot: RoundingMode | null
+  computed_at: string | null
+  paid_at: string | null
+  paid_method: string | null
+}
+
+export interface PayrollAdjustment {
+  id: string
+  payroll_entry_id: string
+  amount: number
+  reason: string | null
+  created_by: string | null
+  created_at: string
+}
+
+export interface CashAdvance {
+  id: string
+  user_id: string
+  amount: number
+  date: string
+  method: AdvanceMethod
+  note: string | null
+  recorded_by: string | null
+  acknowledged_at: string | null
+  remaining_balance: number
+  created_at: string
+}

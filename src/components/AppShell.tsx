@@ -16,6 +16,8 @@ export default function AppShell({ children }: { children: ReactNode }) {
     { to: '/chat', label: t('nav.chat'), end: false },
     { to: '/attendance', label: t('nav.attendance'), end: false },
     { to: '/events', label: t('nav.events'), end: false },
+    { to: '/payroll', label: t('nav.payroll'), end: false },
+    { to: '/advances', label: t('nav.advances'), end: false },
     ...(isOwner ? [{ to: '/team', label: t('nav.team'), end: false }] : []),
   ]
 

@@ -22,3 +22,10 @@ export function formatDay(iso: string, locale: string): string {
 export function dayKey(iso: string): string {
   return new Date(iso).toLocaleDateString('en-CA', { timeZone: TZ })
 }
+
+/** USD money formatting for payslips and the advances ledger. */
+export function formatMoney(amount: number | null | undefined, locale: string): string {
+  return new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(
+    Number(amount ?? 0),
+  )
+}

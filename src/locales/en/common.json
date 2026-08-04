@@ -1,0 +1,63 @@
+{
+  "app": {
+    "name": "Hussain Catering Ops",
+    "tagline": "Structured operations for the whole team"
+  },
+  "nav": {
+    "home": "Home",
+    "signOut": "Sign out"
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "es": "Spanish"
+  },
+  "install": {
+    "title": "Install the app",
+    "body": "Add Hussain Catering Ops to your home screen for quick access.",
+    "action": "Install",
+    "dismiss": "Not now"
+  },
+  "update": {
+    "body": "A new version is available.",
+    "action": "Reload"
+  },
+  "auth": {
+    "signInTitle": "Sign in",
+    "signInSubtitle": "Enter your phone number to receive a one-time code.",
+    "phoneLabel": "Phone number",
+    "phonePlaceholder": "+1 555 123 4567",
+    "sendCode": "Send code",
+    "sending": "Sending…",
+    "codeLabel": "Verification code",
+    "codePlaceholder": "6-digit code",
+    "verify": "Verify & sign in",
+    "verifying": "Verifying…",
+    "changeNumber": "Use a different number",
+    "codeSent": "We sent a code to {{phone}}.",
+    "signingOut": "Signing out…",
+    "errors": {
+      "phoneRequired": "Enter a valid phone number in international format (e.g. +15551234567).",
+      "codeRequired": "Enter the 6-digit code we sent you.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "roles": {
+    "owner": "Owner",
+    "manager": "Manager",
+    "employee": "Employee"
+  },
+  "home": {
+    "welcome": "Welcome, {{name}}",
+    "yourRole": "Your role",
+    "phase0": "Foundation ready",
+    "phase0Body": "Authentication, roles, language, and offline shell are set up. Feature modules arrive in the next phases.",
+    "noProfile": "Your account has no profile yet. Ask the owner to finish setting you up."
+  },
+  "common": {
+    "loading": "Loading…",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save"
+  }
+}

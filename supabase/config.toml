@@ -1,0 +1,46 @@
+# Supabase local development config. Adjust project_id for your linked project.
+project_id = "hussain-catering"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 15
+
+[studio]
+enabled = true
+port = 54323
+
+[auth]
+enabled = true
+# In production set this to the deployed PWA origin.
+site_url = "http://localhost:5173"
+additional_redirect_urls = ["http://localhost:5173"]
+jwt_expiry = 3600
+enable_signup = true
+
+# Phone OTP is the primary sign-in method (spec §4.1). Configure a real SMS
+# provider (e.g. Twilio) before going live; test_otp lets you develop offline.
+[auth.sms]
+enable_signup = true
+enable_confirmations = true
+# template = "Your Hussain Catering code is {{ .Code }}"
+
+[auth.sms.test_otp]
+# Fixed codes for local development only — never enable in production.
+"+15555550100" = "123456"
+"+15555550101" = "123456"
+"+15555550102" = "123456"
+
+# Email is secondary; the owner account should use the strongest factors (NFR §8).
+[auth.email]
+enable_signup = false
+
+[functions]
+# Edge Functions (payroll, period locking, notification fan-out) land in later
+# phases; they run with the service role and bypass RLS.

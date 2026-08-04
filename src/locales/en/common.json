@@ -7,6 +7,7 @@
     "home": "Home",
     "chat": "Chat",
     "attendance": "Attendance",
+    "events": "Events",
     "team": "Team",
     "signOut": "Sign out"
   },
@@ -76,10 +77,11 @@
   "home": {
     "welcome": "Welcome, {{name}}",
     "yourRole": "Your role",
-    "phase2": "Attendance is live",
-    "phase2Body": "Mark the daily roster, track hours for hourly staff, and export summaries. Events and payroll arrive in the next phases.",
+    "phase3": "Events calendar is live",
+    "phase3Body": "Schedule events, assign staff, and spin up an event channel. Payroll and the rest arrive in the next phases.",
     "chatBlurb": "Message your team in channels — general, management, and custom groups.",
     "attendanceBlurb": "Mark the daily roster, or review your own days and hours.",
+    "eventsBlurb": "Schedule events, assign staff, and track your bookings.",
     "teamBlurb": "Invite teammates, set roles and permissions, and manage the roster.",
     "noProfile": "Your account has no profile yet. Ask the owner to finish setting you up."
   },
@@ -159,6 +161,47 @@
     "pickEmployeePrompt": "Pick an employee to view their history.",
     "errors": {
       "timesRequired": "Check-in and check-out times are required for hourly staff marked present."
+    }
+  },
+  "events": {
+    "new": "New event",
+    "newTitle": "New event",
+    "editTitle": "Edit event",
+    "title": "Title",
+    "clientName": "Client name",
+    "clientPhone": "Client phone",
+    "venue": "Venue",
+    "date": "Date",
+    "time": "Time",
+    "startTime": "Start time",
+    "endTime": "End time",
+    "headcount": "Headcount",
+    "status": "Status",
+    "notes": "Notes",
+    "assignedStaff": "Assigned staff",
+    "noStaff": "No active staff to assign.",
+    "createChannel": "Create a team channel for this event",
+    "channelLinked": "A team channel is linked to this event.",
+    "channelWillArchive": "The linked channel will be archived when saved.",
+    "upcoming": "Upcoming",
+    "noneUpcoming": "No upcoming events.",
+    "today": "Today",
+    "prev": "Previous",
+    "next": "Next",
+    "confirmDelete": "Delete this event? This cannot be undone.",
+    "views": {
+      "agenda": "Agenda",
+      "week": "Week",
+      "month": "Month"
+    },
+    "statuses": {
+      "inquiry": "Inquiry",
+      "confirmed": "Confirmed",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "errors": {
+      "required": "A title and date are required."
     }
   },
   "common": {

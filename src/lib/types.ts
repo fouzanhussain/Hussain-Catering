@@ -188,3 +188,36 @@ export interface Attendance {
   created_at: string
   updated_at: string
 }
+
+// --- Events (Phase 3) -----------------------------------------------------
+
+export type EventStatus = 'inquiry' | 'confirmed' | 'completed' | 'cancelled'
+
+export const EVENT_STATUSES: EventStatus[] = [
+  'inquiry',
+  'confirmed',
+  'completed',
+  'cancelled',
+]
+
+export interface CateringEvent {
+  id: string
+  title: string
+  client_name: string | null
+  client_phone: string | null
+  venue: string | null
+  date: string // YYYY-MM-DD
+  start_time: string | null // HH:MM[:SS]
+  end_time: string | null
+  headcount: number | null
+  status: EventStatus
+  notes: string | null
+  created_by: string | null
+  created_at: string
+  updated_at: string
+}
+
+/** An event that has run or been called off no longer needs its chat channel. */
+export function isEventClosed(status: EventStatus): boolean {
+  return status === 'completed' || status === 'cancelled'
+}

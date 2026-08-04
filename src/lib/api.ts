@@ -4,7 +4,9 @@ import { supabase } from './supabase'
 import type {
   Attendance,
   AttendanceStatus,
+  CateringEvent,
   Channel,
+  EventStatus,
   Message,
   Permissions,
   Role,
@@ -281,4 +283,164 @@ export async function upsertAttendance(input: AttendanceInput): Promise<Attendan
     .single()
   if (error) throw error
   return data as Attendance
+}
+
+// --- Events (Phase 3) -----------------------------------------------------
+
+export async function listEvents(start: string, end: string): Promise<CateringEvent[]> {
+  const { data, error } = await supabase
+    .from('events')
+    .select('*')
+    .gte('date', start)
+    .lte('date', end)
+    .order('date')
+    .order('start_time', { nullsFirst: true })
+  if (error) throw error
+  return (data ?? []) as CateringEvent[]
+}
+
+export interface EventInput {
+  title: string
+  client_name?: string | null
+  client_phone?: string | null
+  venue?: string | null
+  date: string
+  start_time?: string | null
+  end_time?: string | null
+  headcount?: number | null
+  status: EventStatus
+  notes?: string | null
+}
+
+export async function createEvent(
+  input: EventInput,
+  createdBy: string,
+): Promise<CateringEvent> {
+  const { data, error } = await supabase
+    .from('events')
+    .insert({ ...normalizeEvent(input), created_by: createdBy })
+    .select('*')
+    .single()
+  if (error) throw error
+  return data as CateringEvent
+}
+
+export async function updateEvent(id: string, input: EventInput): Promise<CateringEvent> {
+  const { data, error } = await supabase
+    .from('events')
+    .update(normalizeEvent(input))
+    .eq('id', id)
+    .select('*')
+    .single()
+  if (error) throw error
+  return data as CateringEvent
+}
+
+export async function deleteEvent(id: string): Promise<void> {
+  const { error } = await supabase.from('events').delete().eq('id', id)
+  if (error) throw error
+}
+
+function normalizeEvent(input: EventInput) {
+  return {
+    title: input.title,
+    client_name: input.client_name ?? null,
+    client_phone: input.client_phone ?? null,
+    venue: input.venue ?? null,
+    date: input.date,
+    start_time: input.start_time || null,
+    end_time: input.end_time || null,
+    headcount: input.headcount ?? null,
+    status: input.status,
+    notes: input.notes ?? null,
+  }
+}
+
+export async function getEventStaffIds(eventId: string): Promise<string[]> {
+  const { data, error } = await supabase
+    .from('event_staff')
+    .select('user_id')
+    .eq('event_id', eventId)
+  if (error) throw error
+  return (data ?? []).map((r) => (r as { user_id: string }).user_id)
+}
+
+/** Reconcile an event's staff list to `userIds` (add missing, remove dropped). */
+export async function setEventStaff(
+  eventId: string,
+  userIds: string[],
+  assignedBy: string,
+): Promise<void> {
+  const current = new Set(await getEventStaffIds(eventId))
+  const next = new Set(userIds)
+  const toAdd = userIds.filter((id) => !current.has(id))
+  const toRemove = [...current].filter((id) => !next.has(id))
+
+  if (toAdd.length) {
+    const { error } = await supabase
+      .from('event_staff')
+      .insert(toAdd.map((user_id) => ({ event_id: eventId, user_id, assigned_by: assignedBy })))
+    if (error) throw error
+  }
+  if (toRemove.length) {
+    const { error } = await supabase
+      .from('event_staff')
+      .delete()
+      .eq('event_id', eventId)
+      .in('user_id', toRemove)
+    if (error) throw error
+  }
+}
+
+/** The (non-archived) chat channel linked to an event, if one exists. */
+export async function getEventChannel(eventId: string): Promise<Channel | null> {
+  const { data, error } = await supabase
+    .from('channels')
+    .select('*')
+    .eq('event_id', eventId)
+    .eq('type', 'event')
+    .maybeSingle()
+  if (error) throw error
+  return (data as Channel | null) ?? null
+}
+
+/** Create the event channel (creator + assigned staff) — spec §4.3, optional. */
+export async function createEventChannel(
+  event: Pick<CateringEvent, 'id' | 'title'>,
+  staffIds: string[],
+  createdBy: string,
+): Promise<Channel> {
+  const { data, error } = await supabase
+    .from('channels')
+    .insert({ name: event.title, type: 'event', event_id: event.id, created_by: createdBy })
+    .select('*')
+    .single()
+  if (error) throw error
+  const channel = data as Channel
+  await addChannelMember(channel.id, createdBy, createdBy)
+  for (const uid of staffIds) {
+    if (uid !== createdBy) await addChannelMember(channel.id, uid, createdBy)
+  }
+  return channel
+}
+
+/** Add newly-assigned staff to an existing event channel (additive). */
+export async function addStaffToEventChannel(
+  channelId: string,
+  staffIds: string[],
+  addedBy: string,
+): Promise<void> {
+  const existing = new Set(await listChannelMemberIds(channelId))
+  for (const uid of staffIds) {
+    if (!existing.has(uid)) await addChannelMember(channelId, uid, addedBy)
+  }
+}
+
+export async function archiveEventChannel(eventId: string): Promise<void> {
+  const { error } = await supabase
+    .from('channels')
+    .update({ archived: true })
+    .eq('event_id', eventId)
+    .eq('type', 'event')
+  if (error) throw error
 }

@@ -7,6 +7,7 @@
     "home": "Inicio",
     "chat": "Chat",
     "attendance": "Asistencia",
+    "events": "Eventos",
     "team": "Equipo",
     "signOut": "Cerrar sesión"
   },
@@ -76,10 +77,11 @@
   "home": {
     "welcome": "Bienvenido, {{name}}",
     "yourRole": "Tu rol",
-    "phase2": "La asistencia está activa",
-    "phase2Body": "Marca la lista diaria, controla las horas del personal por hora y exporta resúmenes. Los eventos y la nómina llegan en las próximas fases.",
+    "phase3": "El calendario de eventos está activo",
+    "phase3Body": "Programa eventos, asigna personal y crea un canal para el evento. La nómina y lo demás llegan en las próximas fases.",
     "chatBlurb": "Comunícate con tu equipo en canales — general, gerencia y grupos personalizados.",
     "attendanceBlurb": "Marca la lista diaria, o revisa tus propios días y horas.",
+    "eventsBlurb": "Programa eventos, asigna personal y consulta tus reservas.",
     "teamBlurb": "Invita compañeros, define roles y permisos, y gestiona la lista del equipo.",
     "noProfile": "Tu cuenta aún no tiene perfil. Pídele al propietario que termine de configurarte."
   },
@@ -159,6 +161,47 @@
     "pickEmployeePrompt": "Elige un empleado para ver su historial.",
     "errors": {
       "timesRequired": "Se requieren las horas de entrada y salida para el personal por hora marcado como presente."
+    }
+  },
+  "events": {
+    "new": "Nuevo evento",
+    "newTitle": "Nuevo evento",
+    "editTitle": "Editar evento",
+    "title": "Título",
+    "clientName": "Nombre del cliente",
+    "clientPhone": "Teléfono del cliente",
+    "venue": "Lugar",
+    "date": "Fecha",
+    "time": "Hora",
+    "startTime": "Hora de inicio",
+    "endTime": "Hora de fin",
+    "headcount": "Comensales",
+    "status": "Estado",
+    "notes": "Notas",
+    "assignedStaff": "Personal asignado",
+    "noStaff": "No hay personal activo para asignar.",
+    "createChannel": "Crear un canal de equipo para este evento",
+    "channelLinked": "Hay un canal de equipo vinculado a este evento.",
+    "channelWillArchive": "El canal vinculado se archivará al guardar.",
+    "upcoming": "Próximos",
+    "noneUpcoming": "No hay eventos próximos.",
+    "today": "Hoy",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "confirmDelete": "¿Eliminar este evento? No se puede deshacer.",
+    "views": {
+      "agenda": "Agenda",
+      "week": "Semana",
+      "month": "Mes"
+    },
+    "statuses": {
+      "inquiry": "Consulta",
+      "confirmed": "Confirmado",
+      "completed": "Completado",
+      "cancelled": "Cancelado"
+    },
+    "errors": {
+      "required": "Se requiere un título y una fecha."
     }
   },
   "common": {

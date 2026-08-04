@@ -55,8 +55,21 @@ See [`docs/spec.md`](docs/spec.md) for the full product specification.
 - **Per-employee history** and **CSV export** (roster day or employee month).
 - Route-based **code splitting** so each screen loads on demand.
 
-Feature modules (Events, Payroll, …) arrive in later phases per the spec's
-build plan.
+### Phase 3 (Events) ✅
+
+- **Events calendar** with **agenda / week / month** views and prev/next/today
+  navigation.
+- **Event CRUD** (managers/owner): title, client name/phone, venue, date,
+  start/end time, headcount, status (`inquiry` / `confirmed` / `completed` /
+  `cancelled`), notes, and **staff assignment**.
+- **Auto event channel** (optional): assigning staff can spin up an `event`-type
+  chat channel with the assigned staff; it **archives automatically** when the
+  event is completed or cancelled.
+- **Employees see only their assigned events** (enforced by RLS via an
+  `is_event_staff` helper) and get a read-only detail view.
+
+Feature modules (Payroll, Vendor Payments, Cash/Inventory, Dashboard) arrive in
+later phases per the spec's build plan.
 
 ## Getting started
 
@@ -93,6 +106,10 @@ Migrations live in `supabase/migrations` and are applied in order:
 5. `0005_attendance.sql` — `pay_basis` on `users`, the `attendance` table with
    a generated `hours_worked` column, and the audit / locked-row triggers.
 6. `0006_attendance_rls.sql` — manager-only INSERT/UPDATE, employee self-read.
+7. `0007_events.sql` — `events` + `event_staff`, the `is_event_staff` helper,
+   and FKs wiring `channels.event_id` / `attendance.event_id` to events.
+8. `0008_events_rls.sql` — `manage_events` full access; employees read only
+   their assigned events.
 
 Apply them with the Supabase CLI (`supabase db push` against a linked project or
 `supabase start` locally), or paste them into the SQL editor in order.
@@ -118,11 +135,12 @@ src/
   components/   AppShell, LanguageSwitcher, InstallPrompt, UpdatePrompt
     chat/       MessageThread, ManageMembersModal
     attendance/ RosterRow, EmployeeAttendance
+    events/     EventForm, EventDetail
   context/      AuthContext (session + profile)
-  hooks/        useUsers, useChannels, useMessages, useAttendance
-  lib/          supabase client, api helpers, domain types, formatting, attendance
+  hooks/        useUsers, useChannels, useMessages, useAttendance, useEvents
+  lib/          supabase client, api helpers, types, formatting, attendance, calendar
   locales/      en/ and es/ translation catalogs
-  pages/        Login (phone OTP), Home, Chat, Attendance, Team
+  pages/        Login (phone OTP), Home, Chat, Attendance, Events, Team
   i18n.ts       react-i18next setup
 supabase/
   migrations/   SQL schema + RLS

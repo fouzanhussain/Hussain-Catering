@@ -1,0 +1,63 @@
+{
+  "app": {
+    "name": "Hussain Catering Ops",
+    "tagline": "Operaciones estructuradas para todo el equipo"
+  },
+  "nav": {
+    "home": "Inicio",
+    "signOut": "Cerrar sesión"
+  },
+  "language": {
+    "label": "Idioma",
+    "en": "Inglés",
+    "es": "Español"
+  },
+  "install": {
+    "title": "Instalar la aplicación",
+    "body": "Agrega Hussain Catering Ops a tu pantalla de inicio para acceder rápido.",
+    "action": "Instalar",
+    "dismiss": "Ahora no"
+  },
+  "update": {
+    "body": "Hay una nueva versión disponible.",
+    "action": "Recargar"
+  },
+  "auth": {
+    "signInTitle": "Iniciar sesión",
+    "signInSubtitle": "Ingresa tu número de teléfono para recibir un código de un solo uso.",
+    "phoneLabel": "Número de teléfono",
+    "phonePlaceholder": "+1 555 123 4567",
+    "sendCode": "Enviar código",
+    "sending": "Enviando…",
+    "codeLabel": "Código de verificación",
+    "codePlaceholder": "Código de 6 dígitos",
+    "verify": "Verificar e iniciar sesión",
+    "verifying": "Verificando…",
+    "changeNumber": "Usar otro número",
+    "codeSent": "Enviamos un código a {{phone}}.",
+    "signingOut": "Cerrando sesión…",
+    "errors": {
+      "phoneRequired": "Ingresa un número válido en formato internacional (p. ej. +15551234567).",
+      "codeRequired": "Ingresa el código de 6 dígitos que te enviamos.",
+      "generic": "Algo salió mal. Inténtalo de nuevo."
+    }
+  },
+  "roles": {
+    "owner": "Propietario",
+    "manager": "Gerente",
+    "employee": "Empleado"
+  },
+  "home": {
+    "welcome": "Bienvenido, {{name}}",
+    "yourRole": "Tu rol",
+    "phase0": "Base lista",
+    "phase0Body": "La autenticación, los roles, el idioma y el modo sin conexión están configurados. Los módulos de funciones llegan en las próximas fases.",
+    "noProfile": "Tu cuenta aún no tiene perfil. Pídele al propietario que termine de configurarte."
+  },
+  "common": {
+    "loading": "Cargando…",
+    "retry": "Reintentar",
+    "cancel": "Cancelar",
+    "save": "Guardar"
+  }
+}

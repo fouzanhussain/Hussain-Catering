@@ -37,8 +37,26 @@ See [`docs/spec.md`](docs/spec.md) for the full product specification.
   **localized system messages** on membership changes.
 - **Create custom channels** and add/remove members (owner or `create_channels`).
 
-Feature modules (Attendance, Events, Payroll, …) arrive in later phases per the
-spec's build plan.
+### Phase 2 (Attendance) ✅
+
+*Manager-only marking — no employee self check-in (spec §4.2).*
+
+- **Daily roster** for managers/owner: every active employee with quick status
+  actions (`present` / `absent` / `half_day` / `excused_paid` / `excused_unpaid`).
+- **Hourly staff:** marking *present* requires check-in/out times; **hours are
+  computed** (overnight shifts roll checkout to the next day, break minutes
+  deducted) via a generated column. Basis comes from a new non-sensitive
+  `pay_basis` field on `users` (managers can see basis, never pay amounts).
+- **Audit trail:** every insert/edit stamps the acting user + timestamp
+  server-side; an optional edit reason is recorded. Rows **freeze when locked**
+  (enforced by trigger; pay-period locking lands in Phase 4).
+- **Employee self-view:** own attendance history and month day/hour totals — no
+  pay amounts.
+- **Per-employee history** and **CSV export** (roster day or employee month).
+- Route-based **code splitting** so each screen loads on demand.
+
+Feature modules (Events, Payroll, …) arrive in later phases per the spec's
+build plan.
 
 ## Getting started
 
@@ -72,6 +90,9 @@ Migrations live in `supabase/migrations` and are applied in order:
    messages; adds `messages`/`channel_members` to the realtime publication.
 4. `0004_chat_rls.sql` — membership-based RLS for chat, expanded team
    visibility, and the private `chat-attachments` storage bucket + policies.
+5. `0005_attendance.sql` — `pay_basis` on `users`, the `attendance` table with
+   a generated `hours_worked` column, and the audit / locked-row triggers.
+6. `0006_attendance_rls.sql` — manager-only INSERT/UPDATE, employee self-read.
 
 Apply them with the Supabase CLI (`supabase db push` against a linked project or
 `supabase start` locally), or paste them into the SQL editor in order.
@@ -96,11 +117,12 @@ matches their number (digits-only) to the unlinked profile and sets `auth_id`.
 src/
   components/   AppShell, LanguageSwitcher, InstallPrompt, UpdatePrompt
     chat/       MessageThread, ManageMembersModal
+    attendance/ RosterRow, EmployeeAttendance
   context/      AuthContext (session + profile)
-  hooks/        useUsers, useChannels, useMessages
-  lib/          supabase client, api helpers, domain types, formatting
+  hooks/        useUsers, useChannels, useMessages, useAttendance
+  lib/          supabase client, api helpers, domain types, formatting, attendance
   locales/      en/ and es/ translation catalogs
-  pages/        Login (phone OTP), Home, Chat, Team
+  pages/        Login (phone OTP), Home, Chat, Attendance, Team
   i18n.ts       react-i18next setup
 supabase/
   migrations/   SQL schema + RLS

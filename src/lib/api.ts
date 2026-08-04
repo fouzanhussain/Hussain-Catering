@@ -2,12 +2,15 @@
 // All access is additionally gated by RLS; these helpers just shape queries.
 import { supabase } from './supabase'
 import type {
+  Attendance,
+  AttendanceStatus,
   Channel,
   Message,
   Permissions,
   Role,
   RoundingMode,
   PayGroup,
+  SalaryBasis,
   UserProfile,
 } from './types'
 
@@ -29,6 +32,7 @@ export interface UpsertUserInput {
   language: string
   permissions?: Partial<Permissions>
   pay_group?: PayGroup | null
+  pay_basis?: SalaryBasis | null
   rounding_mode?: RoundingMode
   hire_date?: string | null
   active?: boolean
@@ -46,6 +50,7 @@ export async function createUser(input: UpsertUserInput): Promise<UserProfile> {
       language: input.language,
       permissions: input.permissions ?? {},
       pay_group: input.pay_group ?? null,
+      pay_basis: input.pay_basis ?? null,
       rounding_mode: input.rounding_mode ?? 'cent',
       hire_date: input.hire_date ?? null,
       active: input.active ?? true,
@@ -216,4 +221,64 @@ export async function uploadAttachment(channelId: string, file: File): Promise<s
     .createSignedUrl(path, 60 * 60 * 24 * 7)
   if (signErr) throw signErr
   return data.signedUrl
+}
+
+// --- Attendance (Phase 2) -------------------------------------------------
+
+export async function listAttendanceByDate(date: string): Promise<Attendance[]> {
+  const { data, error } = await supabase
+    .from('attendance')
+    .select('*')
+    .eq('date', date)
+  if (error) throw error
+  return (data ?? []) as Attendance[]
+}
+
+export async function listAttendanceForUser(
+  userId: string,
+  start: string,
+  end: string,
+): Promise<Attendance[]> {
+  const { data, error } = await supabase
+    .from('attendance')
+    .select('*')
+    .eq('user_id', userId)
+    .gte('date', start)
+    .lte('date', end)
+    .order('date', { ascending: false })
+  if (error) throw error
+  return (data ?? []) as Attendance[]
+}
+
+export interface AttendanceInput {
+  user_id: string
+  date: string
+  status: AttendanceStatus
+  check_in_at?: string | null
+  check_out_at?: string | null
+  break_minutes?: number
+  edit_reason?: string | null
+}
+
+/**
+ * Create or update the attendance row for an employee on a date. Uses the
+ * (user_id, date) unique key. marked_by/edited_by are stamped server-side.
+ */
+export async function upsertAttendance(input: AttendanceInput): Promise<Attendance> {
+  const row = {
+    user_id: input.user_id,
+    date: input.date,
+    status: input.status,
+    check_in_at: input.check_in_at ?? null,
+    check_out_at: input.check_out_at ?? null,
+    break_minutes: input.break_minutes ?? 0,
+    edit_reason: input.edit_reason ?? null,
+  }
+  const { data, error } = await supabase
+    .from('attendance')
+    .upsert(row, { onConflict: 'user_id,date' })
+    .select('*')
+    .single()
+  if (error) throw error
+  return data as Attendance
 }

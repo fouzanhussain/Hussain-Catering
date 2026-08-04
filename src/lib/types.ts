@@ -7,6 +7,8 @@ export type PayGroup = 'group_1_15' | 'group_5_20'
 
 export type RoundingMode = 'cent' | 'dollar'
 
+export type SalaryBasis = 'per_day' | 'hourly' | 'semi_monthly_salary'
+
 /**
  * Fine-grained permission flags stored on the user record.
  * Roles set the defaults; flags override per person. Code checks flags, not roles.
@@ -88,6 +90,7 @@ export interface UserProfile {
   hire_date: string | null
   avatar_url: string | null
   pay_group: PayGroup | null
+  pay_basis: SalaryBasis | null
   rounding_mode: RoundingMode
   created_at: string
 }
@@ -149,4 +152,39 @@ export interface Message {
 /** Channel types that are auto-managed and cannot be renamed/deleted by hand. */
 export function isAutoChannel(type: ChannelType): boolean {
   return type === 'general' || type === 'management'
+}
+
+// --- Attendance (Phase 2) -------------------------------------------------
+
+export type AttendanceStatus =
+  | 'present'
+  | 'absent'
+  | 'half_day'
+  | 'excused_paid'
+  | 'excused_unpaid'
+
+export const ATTENDANCE_STATUSES: AttendanceStatus[] = [
+  'present',
+  'absent',
+  'half_day',
+  'excused_paid',
+  'excused_unpaid',
+]
+
+export interface Attendance {
+  id: string
+  user_id: string
+  date: string // YYYY-MM-DD
+  status: AttendanceStatus
+  check_in_at: string | null
+  check_out_at: string | null
+  break_minutes: number
+  hours_worked: number | null
+  event_id: string | null
+  marked_by: string | null
+  edited_by: string | null
+  edit_reason: string | null
+  locked: boolean
+  created_at: string
+  updated_at: string
 }

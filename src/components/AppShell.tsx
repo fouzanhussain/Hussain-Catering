@@ -14,6 +14,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
   const navItems = [
     { to: '/', label: t('nav.home'), end: true },
     { to: '/chat', label: t('nav.chat'), end: false },
+    { to: '/attendance', label: t('nav.attendance'), end: false },
     ...(isOwner ? [{ to: '/team', label: t('nav.team'), end: false }] : []),
   ]
 

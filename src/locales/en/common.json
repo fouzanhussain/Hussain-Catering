@@ -6,6 +6,7 @@
   "nav": {
     "home": "Home",
     "chat": "Chat",
+    "attendance": "Attendance",
     "team": "Team",
     "signOut": "Sign out"
   },
@@ -57,6 +58,11 @@
     "cent": "Nearest cent",
     "dollar": "Nearest dollar"
   },
+  "payBasis": {
+    "per_day": "Per day",
+    "hourly": "Hourly",
+    "semi_monthly_salary": "Semi-monthly salary"
+  },
   "permissions": {
     "view_payroll": "View payroll",
     "manage_attendance": "Manage attendance",
@@ -70,9 +76,10 @@
   "home": {
     "welcome": "Welcome, {{name}}",
     "yourRole": "Your role",
-    "phase1": "Team & chat are live",
-    "phase1Body": "Your team, channels, and messaging are ready. Attendance, events, and payroll arrive in the next phases.",
+    "phase2": "Attendance is live",
+    "phase2Body": "Mark the daily roster, track hours for hourly staff, and export summaries. Events and payroll arrive in the next phases.",
     "chatBlurb": "Message your team in channels — general, management, and custom groups.",
+    "attendanceBlurb": "Mark the daily roster, or review your own days and hours.",
     "teamBlurb": "Invite teammates, set roles and permissions, and manage the roster.",
     "noProfile": "Your account has no profile yet. Ask the owner to finish setting you up."
   },
@@ -85,6 +92,7 @@
     "email": "Email",
     "role": "Role",
     "payGroup": "Pay group",
+    "payBasis": "Pay basis",
     "rounding": "Rounding",
     "hireDate": "Hire date",
     "none": "None",
@@ -115,6 +123,42 @@
     "system": {
       "memberAdded": "{{actor}} added {{target}}",
       "memberRemoved": "{{actor}} removed {{target}}"
+    }
+  },
+  "attendance": {
+    "tabs": {
+      "roster": "Daily roster",
+      "history": "History"
+    },
+    "status": {
+      "present": "Present",
+      "absent": "Absent",
+      "half_day": "Half day",
+      "excused_paid": "Excused (paid)",
+      "excused_unpaid": "Excused (unpaid)"
+    },
+    "statusLabel": "Status",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "breakMinutes": "Break (min)",
+    "break": "break",
+    "hours": "Hours",
+    "hoursShort": "hrs",
+    "editReason": "Reason for change (optional)",
+    "saved": "Saved",
+    "locked": "Locked",
+    "marked": "{{count}} of {{total}} marked",
+    "name": "Name",
+    "date": "Date",
+    "daysCredited": "Days",
+    "hoursThisMonth": "Hours",
+    "exportCsv": "Export CSV",
+    "noRecords": "No attendance recorded for this month.",
+    "noEmployees": "No active employees to show.",
+    "selectEmployee": "Select an employee…",
+    "pickEmployeePrompt": "Pick an employee to view their history.",
+    "errors": {
+      "timesRequired": "Check-in and check-out times are required for hourly staff marked present."
     }
   },
   "common": {

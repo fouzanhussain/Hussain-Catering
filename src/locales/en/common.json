@@ -10,6 +10,7 @@
     "events": "Events",
     "payroll": "Payroll",
     "advances": "Advances",
+    "vendors": "Vendors",
     "team": "Team",
     "signOut": "Sign out"
   },
@@ -79,12 +80,13 @@
   "home": {
     "welcome": "Welcome, {{name}}",
     "yourRole": "Your role",
-    "phase4": "Payroll is live",
-    "phase4Body": "Set rates, run the dual semi-monthly period tracks, apply advances and adjustments, and pay out — with localized payslips. Vendor payments and the dashboard come next.",
+    "phase5": "Vendor payments are live",
+    "phase5Body": "Track vendors, schedule payments, watch upcoming and overdue, and record receipts. The cash log, inventory, and dashboard come next.",
     "chatBlurb": "Message your team in channels — general, management, and custom groups.",
     "attendanceBlurb": "Mark the daily roster, or review your own days and hours.",
     "eventsBlurb": "Schedule events, assign staff, and track your bookings.",
     "payrollBlurb": "Run payroll and periods, or view your own payslips.",
+    "vendorsBlurb": "Track vendors and schedule payments — upcoming and overdue.",
     "teamBlurb": "Invite teammates, set roles and permissions, and manage the roster.",
     "noProfile": "Your account has no profile yet. Ask the owner to finish setting you up."
   },
@@ -272,6 +274,52 @@
     },
     "errors": {
       "required": "Select an employee and enter an amount greater than zero."
+    }
+  },
+  "vendors": {
+    "tabs": {
+      "payments": "Payments",
+      "vendors": "Vendors"
+    },
+    "filters": {
+      "upcoming": "Upcoming",
+      "overdue": "Overdue",
+      "all": "All"
+    },
+    "statuses": {
+      "scheduled": "Scheduled",
+      "overdue": "Overdue",
+      "paid": "Paid",
+      "cancelled": "Cancelled"
+    },
+    "schedulePayment": "Schedule payment",
+    "editPayment": "Edit payment",
+    "newVendor": "New vendor",
+    "editVendor": "Edit vendor",
+    "calendar": "Calendar",
+    "calendarHint": "Amounts show total due per day.",
+    "noPayments": "No payments here.",
+    "noVendors": "No vendors yet.",
+    "vendor": "Vendor",
+    "selectVendor": "Select a vendor…",
+    "name": "Name",
+    "phone": "Phone",
+    "category": "Category",
+    "notes": "Notes",
+    "amount": "Amount",
+    "dueDate": "Due date",
+    "due": "Due",
+    "method": "Method",
+    "remindDays": "Remind (days before)",
+    "markPaid": "Mark paid",
+    "confirmPaid": "Confirm paid",
+    "receipt": "Receipt",
+    "receiptPhoto": "Receipt photo (optional)",
+    "outstanding": "Outstanding",
+    "paidTotal": "Paid",
+    "errors": {
+      "nameRequired": "A vendor name is required.",
+      "paymentRequired": "Select a vendor and enter an amount and due date."
     }
   },
   "common": {

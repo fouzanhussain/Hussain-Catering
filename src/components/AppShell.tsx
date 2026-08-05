@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import { useAuth } from '../context/AuthContext'
+import { hasPermission } from '../lib/types'
 import LanguageSwitcher from './LanguageSwitcher'
 
 /** App chrome: header (brand, language, sign-out) and primary navigation. */
@@ -10,6 +11,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
   const { t } = useTranslation()
   const { profile, signOut } = useAuth()
   const isOwner = profile?.role === 'owner'
+  const canVendors = isOwner || hasPermission(profile, 'manage_vendors')
 
   const navItems = [
     { to: '/', label: t('nav.home'), end: true },
@@ -18,6 +20,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
     { to: '/events', label: t('nav.events'), end: false },
     { to: '/payroll', label: t('nav.payroll'), end: false },
     { to: '/advances', label: t('nav.advances'), end: false },
+    ...(canVendors ? [{ to: '/vendors', label: t('nav.vendors'), end: false }] : []),
     ...(isOwner ? [{ to: '/team', label: t('nav.team'), end: false }] : []),
   ]
 

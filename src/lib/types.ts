@@ -294,3 +294,50 @@ export interface CashAdvance {
   remaining_balance: number
   created_at: string
 }
+
+// --- Vendors (Phase 5) ----------------------------------------------------
+
+export type PaymentMethod = 'cash' | 'zelle' | 'check' | 'card' | 'other'
+
+export type VendorPaymentStatus = 'scheduled' | 'paid' | 'overdue' | 'cancelled'
+
+export const PAYMENT_METHODS: PaymentMethod[] = ['cash', 'zelle', 'check', 'card', 'other']
+
+export interface Vendor {
+  id: string
+  name: string
+  phone: string | null
+  category: string | null
+  notes: string | null
+  active: boolean
+  created_by: string | null
+  created_at: string
+  updated_at: string
+}
+
+export interface VendorPayment {
+  id: string
+  vendor_id: string
+  amount: number
+  due_date: string
+  method: PaymentMethod
+  status: VendorPaymentStatus
+  event_id: string | null
+  paid_at: string | null
+  paid_by: string | null
+  receipt_url: string | null
+  notes: string | null
+  reminder_days: number
+  created_by: string | null
+  created_at: string
+  updated_at: string
+}
+
+/** A scheduled payment past its due date reads as overdue (derived, not stored). */
+export function effectivePaymentStatus(
+  p: Pick<VendorPayment, 'status' | 'due_date'>,
+  todayIso: string,
+): VendorPaymentStatus {
+  if (p.status === 'scheduled' && p.due_date < todayIso) return 'overdue'
+  return p.status
+}

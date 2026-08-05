@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import { useAuth } from './context/AuthContext'
+import { hasPermission } from './lib/types'
 import AppShell from './components/AppShell'
 import InstallPrompt from './components/InstallPrompt'
 import UpdatePrompt from './components/UpdatePrompt'
@@ -16,6 +17,7 @@ const Attendance = lazy(() => import('./pages/Attendance'))
 const Events = lazy(() => import('./pages/Events'))
 const Payroll = lazy(() => import('./pages/Payroll'))
 const Advances = lazy(() => import('./pages/Advances'))
+const Vendors = lazy(() => import('./pages/Vendors'))
 const Team = lazy(() => import('./pages/Team'))
 
 function Loading() {
@@ -44,6 +46,16 @@ export default function App() {
               <Route path="/events" element={<Events />} />
               <Route path="/payroll" element={<Payroll />} />
               <Route path="/advances" element={<Advances />} />
+              <Route
+                path="/vendors"
+                element={
+                  profile?.role === 'owner' || hasPermission(profile, 'manage_vendors') ? (
+                    <Vendors />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
               <Route
                 path="/team"
                 element={profile?.role === 'owner' ? <Team /> : <Navigate to="/" replace />}

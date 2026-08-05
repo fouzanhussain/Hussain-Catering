@@ -10,6 +10,7 @@
     "events": "Eventos",
     "payroll": "Nómina",
     "advances": "Adelantos",
+    "vendors": "Proveedores",
     "team": "Equipo",
     "signOut": "Cerrar sesión"
   },
@@ -79,12 +80,13 @@
   "home": {
     "welcome": "Bienvenido, {{name}}",
     "yourRole": "Tu rol",
-    "phase4": "La nómina está activa",
-    "phase4Body": "Define tarifas, ejecuta los dos periodos quincenales, aplica adelantos y ajustes, y paga — con recibos localizados. Los pagos a proveedores y el panel llegan después.",
+    "phase5": "Los pagos a proveedores están activos",
+    "phase5Body": "Registra proveedores, programa pagos, controla próximos y vencidos, y guarda recibos. El registro de efectivo, el inventario y el panel llegan después.",
     "chatBlurb": "Comunícate con tu equipo en canales — general, gerencia y grupos personalizados.",
     "attendanceBlurb": "Marca la lista diaria, o revisa tus propios días y horas.",
     "eventsBlurb": "Programa eventos, asigna personal y consulta tus reservas.",
     "payrollBlurb": "Ejecuta la nómina y los periodos, o consulta tus recibos.",
+    "vendorsBlurb": "Registra proveedores y programa pagos — próximos y vencidos.",
     "teamBlurb": "Invita compañeros, define roles y permisos, y gestiona la lista del equipo.",
     "noProfile": "Tu cuenta aún no tiene perfil. Pídele al propietario que termine de configurarte."
   },
@@ -272,6 +274,52 @@
     },
     "errors": {
       "required": "Selecciona un empleado e ingresa un monto mayor que cero."
+    }
+  },
+  "vendors": {
+    "tabs": {
+      "payments": "Pagos",
+      "vendors": "Proveedores"
+    },
+    "filters": {
+      "upcoming": "Próximos",
+      "overdue": "Vencidos",
+      "all": "Todos"
+    },
+    "statuses": {
+      "scheduled": "Programado",
+      "overdue": "Vencido",
+      "paid": "Pagado",
+      "cancelled": "Cancelado"
+    },
+    "schedulePayment": "Programar pago",
+    "editPayment": "Editar pago",
+    "newVendor": "Nuevo proveedor",
+    "editVendor": "Editar proveedor",
+    "calendar": "Calendario",
+    "calendarHint": "Los montos muestran el total a pagar por día.",
+    "noPayments": "No hay pagos aquí.",
+    "noVendors": "Aún no hay proveedores.",
+    "vendor": "Proveedor",
+    "selectVendor": "Selecciona un proveedor…",
+    "name": "Nombre",
+    "phone": "Teléfono",
+    "category": "Categoría",
+    "notes": "Notas",
+    "amount": "Monto",
+    "dueDate": "Fecha de vencimiento",
+    "due": "Vence",
+    "method": "Método",
+    "remindDays": "Recordar (días antes)",
+    "markPaid": "Marcar pagado",
+    "confirmPaid": "Confirmar pago",
+    "receipt": "Recibo",
+    "receiptPhoto": "Foto del recibo (opcional)",
+    "outstanding": "Pendiente",
+    "paidTotal": "Pagado",
+    "errors": {
+      "nameRequired": "El nombre del proveedor es obligatorio.",
+      "paymentRequired": "Selecciona un proveedor e ingresa un monto y una fecha."
     }
   },
   "common": {

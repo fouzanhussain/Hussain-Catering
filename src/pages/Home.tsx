@@ -9,6 +9,7 @@ export default function Home() {
   const { t } = useTranslation()
   const { profile } = useAuth()
   const canVendors = profile?.role === 'owner' || hasPermission(profile, 'manage_vendors')
+  const canCash = profile?.role === 'owner' || hasPermission(profile, 'log_cash')
 
   if (!profile) {
     return (
@@ -90,6 +91,24 @@ export default function Home() {
           </Link>
         )}
 
+        {canCash && (
+          <Link
+            to="/cash"
+            className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
+          >
+            <h2 className="font-semibold text-slate-900 dark:text-slate-100">{t('nav.cash')}</h2>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{t('home.cashBlurb')}</p>
+          </Link>
+        )}
+
+        <Link
+          to="/inventory"
+          className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
+        >
+          <h2 className="font-semibold text-slate-900 dark:text-slate-100">{t('nav.inventory')}</h2>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{t('home.inventoryBlurb')}</p>
+        </Link>
+
         {profile.role === 'owner' && (
           <Link
             to="/team"
@@ -104,8 +123,8 @@ export default function Home() {
       </div>
 
       <section className="mt-6 rounded-xl border border-teal-200 bg-teal-50 p-5 dark:border-teal-900 dark:bg-teal-950/40">
-        <h2 className="font-semibold text-teal-900 dark:text-teal-200">{t('home.phase5')}</h2>
-        <p className="mt-1 text-sm text-teal-800 dark:text-teal-300">{t('home.phase5Body')}</p>
+        <h2 className="font-semibold text-teal-900 dark:text-teal-200">{t('home.phase6')}</h2>
+        <p className="mt-1 text-sm text-teal-800 dark:text-teal-300">{t('home.phase6Body')}</p>
       </section>
     </div>
   )

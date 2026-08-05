@@ -18,6 +18,8 @@ const Events = lazy(() => import('./pages/Events'))
 const Payroll = lazy(() => import('./pages/Payroll'))
 const Advances = lazy(() => import('./pages/Advances'))
 const Vendors = lazy(() => import('./pages/Vendors'))
+const Cash = lazy(() => import('./pages/Cash'))
+const Inventory = lazy(() => import('./pages/Inventory'))
 const Team = lazy(() => import('./pages/Team'))
 
 function Loading() {
@@ -56,6 +58,17 @@ export default function App() {
                   )
                 }
               />
+              <Route
+                path="/cash"
+                element={
+                  profile?.role === 'owner' || hasPermission(profile, 'log_cash') ? (
+                    <Cash />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+              <Route path="/inventory" element={<Inventory />} />
               <Route
                 path="/team"
                 element={profile?.role === 'owner' ? <Team /> : <Navigate to="/" replace />}

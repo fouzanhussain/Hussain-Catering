@@ -11,6 +11,8 @@
     "payroll": "Nómina",
     "advances": "Adelantos",
     "vendors": "Proveedores",
+    "cash": "Efectivo",
+    "inventory": "Inventario",
     "team": "Equipo",
     "signOut": "Cerrar sesión"
   },
@@ -80,13 +82,15 @@
   "home": {
     "welcome": "Bienvenido, {{name}}",
     "yourRole": "Tu rol",
-    "phase5": "Los pagos a proveedores están activos",
-    "phase5Body": "Registra proveedores, programa pagos, controla próximos y vencidos, y guarda recibos. El registro de efectivo, el inventario y el panel llegan después.",
+    "phase6": "El registro de efectivo y el inventario están activos",
+    "phase6Body": "Controla la custodia del efectivo de principio a fin y gestiona el tablero de solicitudes de inventario — cada uno con su hilo de comentarios. El panel del propietario y las notificaciones llegan al final.",
     "chatBlurb": "Comunícate con tu equipo en canales — general, gerencia y grupos personalizados.",
     "attendanceBlurb": "Marca la lista diaria, o revisa tus propios días y horas.",
     "eventsBlurb": "Programa eventos, asigna personal y consulta tus reservas.",
     "payrollBlurb": "Ejecuta la nómina y los periodos, o consulta tus recibos.",
     "vendorsBlurb": "Registra proveedores y programa pagos — próximos y vencidos.",
+    "cashBlurb": "Registra recogidas de efectivo y sigue la custodia hasta el depósito.",
+    "inventoryBlurb": "Solicita insumos y síguelos desde la aprobación hasta la recepción.",
     "teamBlurb": "Invita compañeros, define roles y permisos, y gestiona la lista del equipo.",
     "noProfile": "Tu cuenta aún no tiene perfil. Pídele al propietario que termine de configurarte."
   },
@@ -320,6 +324,69 @@
     "errors": {
       "nameRequired": "El nombre del proveedor es obligatorio.",
       "paymentRequired": "Selecciona un proveedor e ingresa un monto y una fecha."
+    }
+  },
+  "comments": {
+    "title": "Comentarios",
+    "none": "Aún no hay comentarios.",
+    "placeholder": "Agregar un comentario…",
+    "post": "Publicar"
+  },
+  "cash": {
+    "inTransit": "Efectivo en tránsito",
+    "filePickup": "Registrar recogida",
+    "amount": "Monto",
+    "sourceNotes": "Origen / notas",
+    "photo": "Foto",
+    "none": "Aún no hay registros de efectivo.",
+    "custody": "Cadena de custodia",
+    "confirmReceipt": "Confirmar recepción",
+    "markDeposited": "Marcar depositado",
+    "statuses": {
+      "picked_up": "Recogido",
+      "delivered_to_owner": "Entregado al propietario",
+      "deposited": "Depositado"
+    },
+    "errors": {
+      "amountRequired": "Ingresa un monto."
+    }
+  },
+  "inventory": {
+    "newRequest": "Nueva solicitud",
+    "urgentOnly": "Solo urgentes",
+    "urgent": "Urgente",
+    "item": "Artículo",
+    "qty": "Cantidad",
+    "unit": "Unidad",
+    "urgency": "Urgencia",
+    "neededBy": "Necesario para",
+    "requestedBy": "Solicitado por",
+    "status": "Estado",
+    "notes": "Notas",
+    "photo": "Foto",
+    "views": {
+      "board": "Tablero",
+      "list": "Lista"
+    },
+    "urgencies": {
+      "normal": "Normal",
+      "urgent": "Urgente"
+    },
+    "statuses": {
+      "requested": "Solicitado",
+      "approved": "Aprobado",
+      "purchased": "Comprado",
+      "received": "Recibido",
+      "rejected": "Rechazado"
+    },
+    "actions": {
+      "approved": "Aprobar",
+      "rejected": "Rechazar",
+      "purchased": "Marcar comprado",
+      "received": "Marcar recibido"
+    },
+    "errors": {
+      "itemRequired": "Ingresa el nombre del artículo."
     }
   },
   "common": {

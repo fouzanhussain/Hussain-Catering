@@ -14,6 +14,8 @@ const Home = lazy(() => import('./pages/Home'))
 const Chat = lazy(() => import('./pages/Chat'))
 const Attendance = lazy(() => import('./pages/Attendance'))
 const Events = lazy(() => import('./pages/Events'))
+const Payroll = lazy(() => import('./pages/Payroll'))
+const Advances = lazy(() => import('./pages/Advances'))
 const Team = lazy(() => import('./pages/Team'))
 
 function Loading() {
@@ -40,6 +42,8 @@ export default function App() {
               <Route path="/chat" element={<Chat />} />
               <Route path="/attendance" element={<Attendance />} />
               <Route path="/events" element={<Events />} />
+              <Route path="/payroll" element={<Payroll />} />
+              <Route path="/advances" element={<Advances />} />
               <Route
                 path="/team"
                 element={profile?.role === 'owner' ? <Team /> : <Navigate to="/" replace />}

@@ -8,6 +8,8 @@
     "chat": "Chat",
     "attendance": "Attendance",
     "events": "Events",
+    "payroll": "Payroll",
+    "advances": "Advances",
     "team": "Team",
     "signOut": "Sign out"
   },
@@ -77,11 +79,12 @@
   "home": {
     "welcome": "Welcome, {{name}}",
     "yourRole": "Your role",
-    "phase3": "Events calendar is live",
-    "phase3Body": "Schedule events, assign staff, and spin up an event channel. Payroll and the rest arrive in the next phases.",
+    "phase4": "Payroll is live",
+    "phase4Body": "Set rates, run the dual semi-monthly period tracks, apply advances and adjustments, and pay out — with localized payslips. Vendor payments and the dashboard come next.",
     "chatBlurb": "Message your team in channels — general, management, and custom groups.",
     "attendanceBlurb": "Mark the daily roster, or review your own days and hours.",
     "eventsBlurb": "Schedule events, assign staff, and track your bookings.",
+    "payrollBlurb": "Run payroll and periods, or view your own payslips.",
     "teamBlurb": "Invite teammates, set roles and permissions, and manage the roster.",
     "noProfile": "Your account has no profile yet. Ask the owner to finish setting you up."
   },
@@ -202,6 +205,73 @@
     },
     "errors": {
       "required": "A title and date are required."
+    }
+  },
+  "payroll": {
+    "tabs": {
+      "periods": "Periods",
+      "rates": "Rates"
+    },
+    "statuses": {
+      "open": "Open",
+      "review": "Review",
+      "locked": "Locked",
+      "paid": "Paid"
+    },
+    "methods": {
+      "cash": "Cash",
+      "zelle": "Zelle",
+      "check": "Check",
+      "card": "Card",
+      "other": "Other"
+    },
+    "generatePeriods": "Generate periods",
+    "noPeriods": "No periods yet — generate them for a year.",
+    "noPayslips": "No payslips yet.",
+    "payout": "Payout",
+    "compute": "Compute",
+    "moveToReview": "Move to review",
+    "lock": "Lock",
+    "confirmLock": "Lock this period? Attendance in range will freeze and amounts can no longer change.",
+    "markPaid": "Mark paid",
+    "notComputed": "Not computed yet — press Compute.",
+    "totalNet": "Total net",
+    "gross": "Gross",
+    "adjustments": "Adjustments",
+    "advancesDeducted": "Advances",
+    "net": "Net",
+    "carryover": "Advance carryover: {{amount}} rolls to next period.",
+    "roundingApplied": "Rounded to {{mode}}.",
+    "paidOn": "Paid {{date}} · {{method}}",
+    "adjAmount": "Amount",
+    "adjReason": "Reason",
+    "addRate": "Add rate",
+    "amount": "Amount",
+    "rateHistory": "Rate history",
+    "noRates": "No rates set.",
+    "effective": "effective",
+    "selectEmployee": "Select an employee…",
+    "errors": {
+      "rateRequired": "Select an employee and enter an amount."
+    }
+  },
+  "advances": {
+    "record": "Record advance",
+    "none": "No advances recorded.",
+    "remaining": "Remaining",
+    "acknowledge": "Acknowledge",
+    "acknowledged": "Acknowledged",
+    "amount": "Amount",
+    "selectEmployee": "Select an employee…",
+    "notePlaceholder": "Note (optional)",
+    "name": "Name",
+    "methods": {
+      "cash": "Cash",
+      "zelle": "Zelle",
+      "other": "Other"
+    },
+    "errors": {
+      "required": "Select an employee and enter an amount greater than zero."
     }
   },
   "common": {

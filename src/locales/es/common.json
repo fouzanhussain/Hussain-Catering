@@ -8,6 +8,8 @@
     "chat": "Chat",
     "attendance": "Asistencia",
     "events": "Eventos",
+    "payroll": "Nómina",
+    "advances": "Adelantos",
     "team": "Equipo",
     "signOut": "Cerrar sesión"
   },
@@ -77,11 +79,12 @@
   "home": {
     "welcome": "Bienvenido, {{name}}",
     "yourRole": "Tu rol",
-    "phase3": "El calendario de eventos está activo",
-    "phase3Body": "Programa eventos, asigna personal y crea un canal para el evento. La nómina y lo demás llegan en las próximas fases.",
+    "phase4": "La nómina está activa",
+    "phase4Body": "Define tarifas, ejecuta los dos periodos quincenales, aplica adelantos y ajustes, y paga — con recibos localizados. Los pagos a proveedores y el panel llegan después.",
     "chatBlurb": "Comunícate con tu equipo en canales — general, gerencia y grupos personalizados.",
     "attendanceBlurb": "Marca la lista diaria, o revisa tus propios días y horas.",
     "eventsBlurb": "Programa eventos, asigna personal y consulta tus reservas.",
+    "payrollBlurb": "Ejecuta la nómina y los periodos, o consulta tus recibos.",
     "teamBlurb": "Invita compañeros, define roles y permisos, y gestiona la lista del equipo.",
     "noProfile": "Tu cuenta aún no tiene perfil. Pídele al propietario que termine de configurarte."
   },
@@ -202,6 +205,73 @@
     },
     "errors": {
       "required": "Se requiere un título y una fecha."
+    }
+  },
+  "payroll": {
+    "tabs": {
+      "periods": "Periodos",
+      "rates": "Tarifas"
+    },
+    "statuses": {
+      "open": "Abierto",
+      "review": "Revisión",
+      "locked": "Bloqueado",
+      "paid": "Pagado"
+    },
+    "methods": {
+      "cash": "Efectivo",
+      "zelle": "Zelle",
+      "check": "Cheque",
+      "card": "Tarjeta",
+      "other": "Otro"
+    },
+    "generatePeriods": "Generar periodos",
+    "noPeriods": "Aún no hay periodos — genéralos para un año.",
+    "noPayslips": "Aún no hay recibos.",
+    "payout": "Pago",
+    "compute": "Calcular",
+    "moveToReview": "Pasar a revisión",
+    "lock": "Bloquear",
+    "confirmLock": "¿Bloquear este periodo? La asistencia del rango se congelará y los montos ya no podrán cambiar.",
+    "markPaid": "Marcar pagado",
+    "notComputed": "Aún no calculado — presiona Calcular.",
+    "totalNet": "Neto total",
+    "gross": "Bruto",
+    "adjustments": "Ajustes",
+    "advancesDeducted": "Adelantos",
+    "net": "Neto",
+    "carryover": "Saldo de adelanto: {{amount}} pasa al próximo periodo.",
+    "roundingApplied": "Redondeado {{mode}}.",
+    "paidOn": "Pagado {{date}} · {{method}}",
+    "adjAmount": "Monto",
+    "adjReason": "Motivo",
+    "addRate": "Agregar tarifa",
+    "amount": "Monto",
+    "rateHistory": "Historial de tarifas",
+    "noRates": "Sin tarifas definidas.",
+    "effective": "vigente",
+    "selectEmployee": "Selecciona un empleado…",
+    "errors": {
+      "rateRequired": "Selecciona un empleado e ingresa un monto."
+    }
+  },
+  "advances": {
+    "record": "Registrar adelanto",
+    "none": "No hay adelantos registrados.",
+    "remaining": "Restante",
+    "acknowledge": "Confirmar",
+    "acknowledged": "Confirmado",
+    "amount": "Monto",
+    "selectEmployee": "Selecciona un empleado…",
+    "notePlaceholder": "Nota (opcional)",
+    "name": "Nombre",
+    "methods": {
+      "cash": "Efectivo",
+      "zelle": "Zelle",
+      "other": "Otro"
+    },
+    "errors": {
+      "required": "Selecciona un empleado e ingresa un monto mayor que cero."
     }
   },
   "common": {

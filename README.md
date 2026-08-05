@@ -68,8 +68,31 @@ See [`docs/spec.md`](docs/spec.md) for the full product specification.
 - **Employees see only their assigned events** (enforced by RLS via an
   `is_event_staff` helper) and get a read-only detail view.
 
-Feature modules (Payroll, Vendor Payments, Cash/Inventory, Dashboard) arrive in
-later phases per the spec's build plan.
+### Phase 4 (Payroll) ✅
+
+*The most business-specific part — tested rigorously before trusting real pay.*
+
+- **Three pay bases:** `per_day`, `hourly` (from clocked hours), and
+  `semi_monthly_salary` (`daily_value = salary ÷ 13`).
+- **Dual semi-monthly period tracks** generated per pay group, each with its own
+  earning window and payout date (spec §4.5.2).
+- **Cash advances** ledger (recordable by `log_advances` holders, no salary
+  shown) that **auto-attach as deductions** to the next computed entry, **FIFO**,
+  with **carryover** when they exceed net; employees can **acknowledge** their own.
+- **Manual adjustments** (bonus/tip/correction) per entry.
+- **Per-employee rounding** applied **once** to the final net (nearest cent or
+  dollar); intermediate math stays full-precision.
+- **Lifecycle** `open → review → locked → paid`; locking **freezes the period's
+  attendance**. Rate history is **append-only** with effective dates; the
+  period-active rate is snapshotted onto each entry.
+- **Localized payslips** and **CSV export**.
+- Computation lives in a **pure, exhaustively unit-tested core**
+  (`src/lib/payroll.ts`, `npm test` — basis × rounding, advance-exceeds-net, and
+  rounding boundaries with exact expected numbers), shared with a
+  service-role **Edge Function** (`supabase/functions/compute-payroll`).
+
+Feature modules (Vendor Payments, Cash/Inventory, Dashboard) arrive in later
+phases per the spec's build plan.
 
 ## Getting started
 
@@ -88,6 +111,7 @@ npm run dev
 | `npm run preview` | Preview the production build (service worker active). |
 | `npm run typecheck` | Type-check only. |
 | `npm run icons` | Regenerate PWA icons in `public/`. |
+| `npm test` | Run the payroll computation tests (exact-number assertions). |
 | `npm run seed` | Seed users via the Supabase Admin API (needs service-role key). |
 
 ## Database & Supabase
@@ -110,6 +134,11 @@ Migrations live in `supabase/migrations` and are applied in order:
    and FKs wiring `channels.event_id` / `attendance.event_id` to events.
 8. `0008_events_rls.sql` — `manage_events` full access; employees read only
    their assigned events.
+9. `0009_payroll.sql` — `salary_rates`, `pay_periods`, `payroll_entries`,
+   `payroll_adjustments`, `cash_advances`, `advance_deductions`.
+10. `0010_payroll_rls.sql` — salary-blindness RLS: pay figures readable only by
+    `view_payroll` / owner and each employee's own rows; owner-only writes;
+    advances readable by `log_advances` holders (no salary data).
 
 Apply them with the Supabase CLI (`supabase db push` against a linked project or
 `supabase start` locally), or paste them into the SQL editor in order.
@@ -136,15 +165,18 @@ src/
     chat/       MessageThread, ManageMembersModal
     attendance/ RosterRow, EmployeeAttendance
     events/     EventForm, EventDetail
+    payroll/    Payslip
   context/      AuthContext (session + profile)
   hooks/        useUsers, useChannels, useMessages, useAttendance, useEvents
-  lib/          supabase client, api helpers, types, formatting, attendance, calendar
+  lib/          supabase, api, payroll(+Api), types, formatting, attendance, calendar
   locales/      en/ and es/ translation catalogs
-  pages/        Login (phone OTP), Home, Chat, Attendance, Events, Team
+  pages/        Login, Home, Chat, Attendance, Events, Payroll, Advances, Team
   i18n.ts       react-i18next setup
+scripts/
+  test-payroll.ts  exact-number payroll assertions (npm test)
 supabase/
   migrations/   SQL schema + RLS
-  functions/    Edge Functions (later phases)
+  functions/    compute-payroll Edge Function
   config.toml   local dev config (phone auth)
   seed.ts       Admin-API seed
   seed.sql      no-auth SQL seed

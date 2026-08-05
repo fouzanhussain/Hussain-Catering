@@ -117,7 +117,21 @@ See [`docs/spec.md`](docs/spec.md) for the full product specification.
   (`can_access_entity` helper).
 - Photos for both, in a private `manage`-gated `ops-photos` bucket.
 
-Final phase (Dashboard + Web Push + Spanish polish) is next per the spec's plan.
+### Phase 7 (Dashboard + Web Push + Polish) ✅ — v1 complete
+
+- **Owner dashboard** on the home screen: today's roster marked/unmarked and
+  events, events this week, vendor payments **overdue / due this week**, each pay
+  group's **current period status + next payout**, **cash in transit**, pending
+  inventory, and unacknowledged advances — every tile links to its module.
+- **In-app notifications**: a header bell with a live unread badge (realtime),
+  a list, and mark-all-read.
+- **Web Push**: a custom service worker (`injectManifest`) handles `push` /
+  `notificationclick`; users enable push per device (VAPID), and a
+  **`send-notifications` Edge Function** fans out in-app rows + push with the
+  service role, pruning stale endpoints.
+- Bilingual EN/ES across every screen.
+
+That completes the v1 build plan.
 
 ## Getting started
 
@@ -174,6 +188,8 @@ Migrations live in `supabase/migrations` and are applied in order:
 14. `0014_cash_inventory_rls.sql` — cash gated to `log_cash`/owner/participants;
     inventory readable by `approve_inventory`/owner/requester (any employee may
     submit); comments inherit each record's visibility.
+15. `0015_notifications.sql` — `notifications` (own read/ack) and
+    `push_subscriptions` (own), plus their RLS.
 
 Apply them with the Supabase CLI (`supabase db push` against a linked project or
 `supabase start` locally), or paste them into the SQL editor in order.
@@ -196,7 +212,7 @@ matches their number (digits-only) to the unlinked profile and sets `auth_id`.
 
 ```
 src/
-  components/   AppShell, LanguageSwitcher, InstallPrompt, UpdatePrompt
+  components/   AppShell, LanguageSwitcher, InstallPrompt, UpdatePrompt, NotificationsBell, Dashboard
     chat/       MessageThread, ManageMembersModal
     attendance/ RosterRow, EmployeeAttendance
     events/     EventForm, EventDetail
@@ -211,9 +227,10 @@ src/
   i18n.ts       react-i18next setup
 scripts/
   test-payroll.ts  exact-number payroll assertions (npm test)
+  sw.ts         custom service worker (offline precache + web push)
 supabase/
   migrations/   SQL schema + RLS
-  functions/    compute-payroll Edge Function
+  functions/    compute-payroll, send-notifications Edge Functions
   config.toml   local dev config (phone auth)
   seed.ts       Admin-API seed
   seed.sql      no-auth SQL seed

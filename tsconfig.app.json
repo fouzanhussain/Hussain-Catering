@@ -20,5 +20,7 @@
 
     "types": ["vite/client", "vite-plugin-pwa/client"]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "// sw.ts": "Built by vite-plugin-pwa (injectManifest) with esbuild; its WebWorker libs conflict with the app's DOM libs, so it is excluded from the app typecheck.",
+  "exclude": ["src/sw.ts"]
 }

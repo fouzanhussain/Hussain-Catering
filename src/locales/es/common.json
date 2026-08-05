@@ -82,8 +82,8 @@
   "home": {
     "welcome": "Bienvenido, {{name}}",
     "yourRole": "Tu rol",
-    "phase6": "El registro de efectivo y el inventario están activos",
-    "phase6Body": "Controla la custodia del efectivo de principio a fin y gestiona el tablero de solicitudes de inventario — cada uno con su hilo de comentarios. El panel del propietario y las notificaciones llegan al final.",
+    "phase7": "La v1 está completa",
+    "phase7Body": "El panel del propietario, las notificaciones y el push web instalable completan la v1 — asistencia, nómina, eventos, proveedores, efectivo, inventario y chat, todo en inglés y español.",
     "chatBlurb": "Comunícate con tu equipo en canales — general, gerencia y grupos personalizados.",
     "attendanceBlurb": "Marca la lista diaria, o revisa tus propios días y horas.",
     "eventsBlurb": "Programa eventos, asigna personal y consulta tus reservas.",
@@ -324,6 +324,32 @@
     "errors": {
       "nameRequired": "El nombre del proveedor es obligatorio.",
       "paymentRequired": "Selecciona un proveedor e ingresa un monto y una fecha."
+    }
+  },
+  "dashboard": {
+    "title": "Panel",
+    "rosterMarked": "Asistencia marcada",
+    "eventsThisWeek": "Eventos esta semana",
+    "overdue": "Pagos vencidos",
+    "dueThisWeek": "Vencen esta semana",
+    "cashInTransit": "Efectivo en tránsito",
+    "pendingInventory": "Inventario pendiente",
+    "unackAdvances": "Adelantos sin confirmar",
+    "noPeriod": "No hay periodo generado.",
+    "todayEvents": "Eventos de hoy",
+    "noEventsToday": "No hay eventos hoy."
+  },
+  "notifications": {
+    "title": "Notificaciones",
+    "empty": "Estás al día.",
+    "markAllRead": "Marcar todo leído",
+    "enablePush": "Activar notificaciones push",
+    "disablePush": "Desactivar notificaciones push",
+    "types": {
+      "advance": "Adelanto de efectivo",
+      "payroll": "Nómina",
+      "vendor_due": "Pago a proveedor",
+      "inventory": "Inventario"
     }
   },
   "comments": {

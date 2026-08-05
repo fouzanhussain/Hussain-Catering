@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useAuth } from '../context/AuthContext'
 import { hasPermission } from '../lib/types'
 import LanguageSwitcher from './LanguageSwitcher'
+import NotificationsBell from './NotificationsBell'
 
 /** App chrome: header (brand, language, sign-out) and primary navigation. */
 export default function AppShell({ children }: { children: ReactNode }) {
@@ -43,6 +44,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
             {t('app.name')}
           </span>
           <div className="flex items-center gap-2">
+            <NotificationsBell />
             <LanguageSwitcher />
             <button
               onClick={() => void signOut()}

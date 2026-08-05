@@ -91,8 +91,20 @@ See [`docs/spec.md`](docs/spec.md) for the full product specification.
   rounding boundaries with exact expected numbers), shared with a
   service-role **Edge Function** (`supabase/functions/compute-payroll`).
 
-Feature modules (Vendor Payments, Cash/Inventory, Dashboard) arrive in later
-phases per the spec's build plan.
+### Phase 5 (Vendor Payments) ✅
+
+- **Vendors** CRUD (name, phone, category, notes) with activate/deactivate and
+  per-vendor outstanding/paid totals.
+- **Scheduled payments**: amount, due date, method, optional event link, notes,
+  and a reminder lead time. **Upcoming / overdue / all** filters; overdue is
+  derived from a past due date (no cron needed).
+- **Mark paid** records the actor + timestamp and accepts a **receipt photo**
+  (private, `manage_vendors`-gated storage).
+- **Calendar overlay** of due dates by month.
+- Gated to **`manage_vendors`** holders (managers/owner) — not employee-facing.
+
+Feature modules (Cash Log + Inventory, Dashboard + Web Push) arrive in the
+final phases per the spec's build plan.
 
 ## Getting started
 
@@ -139,6 +151,10 @@ Migrations live in `supabase/migrations` and are applied in order:
 10. `0010_payroll_rls.sql` — salary-blindness RLS: pay figures readable only by
     `view_payroll` / owner and each employee's own rows; owner-only writes;
     advances readable by `log_advances` holders (no salary data).
+11. `0011_vendors.sql` — `vendors`, `vendor_payments`, and the
+    `vendor-receipts` storage bucket.
+12. `0012_vendors_rls.sql` — `manage_vendors` read/insert/update; owner-only
+    delete; receipts gated by `manage_vendors`.
 
 Apply them with the Supabase CLI (`supabase db push` against a linked project or
 `supabase start` locally), or paste them into the SQL editor in order.
@@ -166,11 +182,12 @@ src/
     attendance/ RosterRow, EmployeeAttendance
     events/     EventForm, EventDetail
     payroll/    Payslip
+    vendors/    VendorForm, PaymentForm
   context/      AuthContext (session + profile)
-  hooks/        useUsers, useChannels, useMessages, useAttendance, useEvents
-  lib/          supabase, api, payroll(+Api), types, formatting, attendance, calendar
+  hooks/        useUsers, useChannels, useMessages, useAttendance, useEvents, useVendors
+  lib/          supabase, api, payroll(+Api), vendorApi, types, formatting, attendance, calendar
   locales/      en/ and es/ translation catalogs
-  pages/        Login, Home, Chat, Attendance, Events, Payroll, Advances, Team
+  pages/        Login, Home, Chat, Attendance, Events, Payroll, Advances, Vendors, Team
   i18n.ts       react-i18next setup
 scripts/
   test-payroll.ts  exact-number payroll assertions (npm test)

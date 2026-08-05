@@ -12,6 +12,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
   const { profile, signOut } = useAuth()
   const isOwner = profile?.role === 'owner'
   const canVendors = isOwner || hasPermission(profile, 'manage_vendors')
+  const canCash = isOwner || hasPermission(profile, 'log_cash')
 
   const navItems = [
     { to: '/', label: t('nav.home'), end: true },
@@ -21,6 +22,8 @@ export default function AppShell({ children }: { children: ReactNode }) {
     { to: '/payroll', label: t('nav.payroll'), end: false },
     { to: '/advances', label: t('nav.advances'), end: false },
     ...(canVendors ? [{ to: '/vendors', label: t('nav.vendors'), end: false }] : []),
+    ...(canCash ? [{ to: '/cash', label: t('nav.cash'), end: false }] : []),
+    { to: '/inventory', label: t('nav.inventory'), end: false },
     ...(isOwner ? [{ to: '/team', label: t('nav.team'), end: false }] : []),
   ]
 

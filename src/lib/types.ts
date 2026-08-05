@@ -341,3 +341,78 @@ export function effectivePaymentStatus(
   if (p.status === 'scheduled' && p.due_date < todayIso) return 'overdue'
   return p.status
 }
+
+// --- Cash log + Inventory (Phase 6) ---------------------------------------
+
+export type CashStatus = 'picked_up' | 'delivered_to_owner' | 'deposited'
+
+export const CASH_STATUSES: CashStatus[] = ['picked_up', 'delivered_to_owner', 'deposited']
+
+export interface CashEntry {
+  id: string
+  amount: number
+  event_id: string | null
+  picked_up_by: string | null
+  handed_to: string | null
+  status: CashStatus
+  photo_url: string | null
+  notes: string | null
+  created_at: string
+  updated_at: string
+}
+
+export interface CashEntryLog {
+  id: string
+  cash_entry_id: string
+  from_status: CashStatus | null
+  to_status: CashStatus
+  acted_by: string | null
+  at: string
+}
+
+/** The next custody step, or null once deposited. */
+export function nextCashStatus(status: CashStatus): CashStatus | null {
+  if (status === 'picked_up') return 'delivered_to_owner'
+  if (status === 'delivered_to_owner') return 'deposited'
+  return null
+}
+
+export type InventoryUrgency = 'normal' | 'urgent'
+
+export type InventoryStatus = 'requested' | 'approved' | 'rejected' | 'purchased' | 'received'
+
+export const INVENTORY_STATUSES: InventoryStatus[] = [
+  'requested',
+  'approved',
+  'purchased',
+  'received',
+  'rejected',
+]
+
+export interface InventoryRequest {
+  id: string
+  item: string
+  qty: number | null
+  unit: string | null
+  urgency: InventoryUrgency
+  needed_by: string | null
+  event_id: string | null
+  status: InventoryStatus
+  requested_by: string | null
+  decided_by: string | null
+  photo_url: string | null
+  notes: string | null
+  created_at: string
+  updated_at: string
+}
+
+export type CommentEntity = 'cash' | 'inventory' | 'vendor_payment' | 'advance'
+
+export interface Comment {
+  id: string
+  entity_type: CommentEntity
+  entity_id: string
+  sender_id: string | null
+  body: string
+  created_at: string
+}

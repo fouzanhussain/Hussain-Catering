@@ -103,8 +103,21 @@ See [`docs/spec.md`](docs/spec.md) for the full product specification.
 - **Calendar overlay** of due dates by month.
 - Gated to **`manage_vendors`** holders (managers/owner) — not employee-facing.
 
-Feature modules (Cash Log + Inventory, Dashboard + Web Push) arrive in the
-final phases per the spec's build plan.
+### Phase 6 (Cash Log + Inventory) ✅
+
+- **Cash envelope log** with a **two-tap custody chain** (`picked_up →
+  delivered_to_owner → deposited`): `log_cash` holders file pickups, the owner
+  confirms receipt and deposit, and **every transition is logged** with actor +
+  timestamp (via a `SECURITY DEFINER` trigger). Running **cash-in-transit** total.
+- **Inventory requests**: any employee submits; a **kanban board** and list track
+  `requested → approved/rejected → purchased → received`; `approve_inventory`
+  holders decide.
+- **Comment thread per record** (cash entry, inventory request) via a generic
+  `comments` table whose RLS mirrors each record's own visibility
+  (`can_access_entity` helper).
+- Photos for both, in a private `manage`-gated `ops-photos` bucket.
+
+Final phase (Dashboard + Web Push + Spanish polish) is next per the spec's plan.
 
 ## Getting started
 
@@ -155,6 +168,12 @@ Migrations live in `supabase/migrations` and are applied in order:
     `vendor-receipts` storage bucket.
 12. `0012_vendors_rls.sql` — `manage_vendors` read/insert/update; owner-only
     delete; receipts gated by `manage_vendors`.
+13. `0013_cash_inventory.sql` — `cash_entries` + `cash_entry_log` (custody
+    trigger), `inventory_requests`, generic `comments` + `can_access_entity`
+    helper, and the `ops-photos` bucket.
+14. `0014_cash_inventory_rls.sql` — cash gated to `log_cash`/owner/participants;
+    inventory readable by `approve_inventory`/owner/requester (any employee may
+    submit); comments inherit each record's visibility.
 
 Apply them with the Supabase CLI (`supabase db push` against a linked project or
 `supabase start` locally), or paste them into the SQL editor in order.
@@ -183,11 +202,12 @@ src/
     events/     EventForm, EventDetail
     payroll/    Payslip
     vendors/    VendorForm, PaymentForm
+    CommentThread (shared comment thread for any record)
   context/      AuthContext (session + profile)
-  hooks/        useUsers, useChannels, useMessages, useAttendance, useEvents, useVendors
-  lib/          supabase, api, payroll(+Api), vendorApi, types, formatting, attendance, calendar
+  hooks/        useUsers, useChannels, useMessages, useAttendance, useEvents, useVendors, useAsyncList
+  lib/          supabase, api, payroll(+Api), vendorApi, opsApi, types, formatting, attendance, calendar
   locales/      en/ and es/ translation catalogs
-  pages/        Login, Home, Chat, Attendance, Events, Payroll, Advances, Vendors, Team
+  pages/        Login, Home, Chat, Attendance, Events, Payroll, Advances, Vendors, Cash, Inventory, Team
   i18n.ts       react-i18next setup
 scripts/
   test-payroll.ts  exact-number payroll assertions (npm test)

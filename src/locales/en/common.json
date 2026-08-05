@@ -11,6 +11,8 @@
     "payroll": "Payroll",
     "advances": "Advances",
     "vendors": "Vendors",
+    "cash": "Cash",
+    "inventory": "Inventory",
     "team": "Team",
     "signOut": "Sign out"
   },
@@ -80,13 +82,15 @@
   "home": {
     "welcome": "Welcome, {{name}}",
     "yourRole": "Your role",
-    "phase5": "Vendor payments are live",
-    "phase5Body": "Track vendors, schedule payments, watch upcoming and overdue, and record receipts. The cash log, inventory, and dashboard come next.",
+    "phase6": "Cash log & inventory are live",
+    "phase6Body": "Track cash custody end to end and run the inventory request board — each with its own comment thread. The owner dashboard and web push come last.",
     "chatBlurb": "Message your team in channels — general, management, and custom groups.",
     "attendanceBlurb": "Mark the daily roster, or review your own days and hours.",
     "eventsBlurb": "Schedule events, assign staff, and track your bookings.",
     "payrollBlurb": "Run payroll and periods, or view your own payslips.",
     "vendorsBlurb": "Track vendors and schedule payments — upcoming and overdue.",
+    "cashBlurb": "File cash pickups and follow the custody chain to deposit.",
+    "inventoryBlurb": "Request supplies and track them from approval to received.",
     "teamBlurb": "Invite teammates, set roles and permissions, and manage the roster.",
     "noProfile": "Your account has no profile yet. Ask the owner to finish setting you up."
   },
@@ -320,6 +324,69 @@
     "errors": {
       "nameRequired": "A vendor name is required.",
       "paymentRequired": "Select a vendor and enter an amount and due date."
+    }
+  },
+  "comments": {
+    "title": "Comments",
+    "none": "No comments yet.",
+    "placeholder": "Add a comment…",
+    "post": "Post"
+  },
+  "cash": {
+    "inTransit": "Cash in transit",
+    "filePickup": "File pickup",
+    "amount": "Amount",
+    "sourceNotes": "Source / notes",
+    "photo": "Photo",
+    "none": "No cash entries yet.",
+    "custody": "Custody trail",
+    "confirmReceipt": "Confirm receipt",
+    "markDeposited": "Mark deposited",
+    "statuses": {
+      "picked_up": "Picked up",
+      "delivered_to_owner": "Delivered to owner",
+      "deposited": "Deposited"
+    },
+    "errors": {
+      "amountRequired": "Enter an amount."
+    }
+  },
+  "inventory": {
+    "newRequest": "New request",
+    "urgentOnly": "Urgent only",
+    "urgent": "Urgent",
+    "item": "Item",
+    "qty": "Quantity",
+    "unit": "Unit",
+    "urgency": "Urgency",
+    "neededBy": "Needed by",
+    "requestedBy": "Requested by",
+    "status": "Status",
+    "notes": "Notes",
+    "photo": "Photo",
+    "views": {
+      "board": "Board",
+      "list": "List"
+    },
+    "urgencies": {
+      "normal": "Normal",
+      "urgent": "Urgent"
+    },
+    "statuses": {
+      "requested": "Requested",
+      "approved": "Approved",
+      "purchased": "Purchased",
+      "received": "Received",
+      "rejected": "Rejected"
+    },
+    "actions": {
+      "approved": "Approve",
+      "rejected": "Reject",
+      "purchased": "Mark purchased",
+      "received": "Mark received"
+    },
+    "errors": {
+      "itemRequired": "Enter an item name."
     }
   },
   "common": {

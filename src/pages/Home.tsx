@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { useAuth } from '../context/AuthContext'
 import { hasPermission } from '../lib/types'
+import Dashboard from '../components/Dashboard'
 
 /** Landing screen after sign-in. Feature modules land here in later phases. */
 export default function Home() {
@@ -29,6 +30,15 @@ export default function Home() {
       <p className="mt-1 text-slate-600 dark:text-slate-300">
         {t('home.yourRole')}: <span className="font-medium">{t(`roles.${profile.role}`)}</span>
       </p>
+
+      {profile.role === 'owner' && (
+        <section className="mt-6">
+          <h2 className="mb-3 text-lg font-semibold text-slate-900 dark:text-slate-100">
+            {t('dashboard.title')}
+          </h2>
+          <Dashboard />
+        </section>
+      )}
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         <Link
@@ -123,8 +133,8 @@ export default function Home() {
       </div>
 
       <section className="mt-6 rounded-xl border border-teal-200 bg-teal-50 p-5 dark:border-teal-900 dark:bg-teal-950/40">
-        <h2 className="font-semibold text-teal-900 dark:text-teal-200">{t('home.phase6')}</h2>
-        <p className="mt-1 text-sm text-teal-800 dark:text-teal-300">{t('home.phase6Body')}</p>
+        <h2 className="font-semibold text-teal-900 dark:text-teal-200">{t('home.phase7')}</h2>
+        <p className="mt-1 text-sm text-teal-800 dark:text-teal-300">{t('home.phase7Body')}</p>
       </section>
     </div>
   )

@@ -82,8 +82,8 @@
   "home": {
     "welcome": "Welcome, {{name}}",
     "yourRole": "Your role",
-    "phase6": "Cash log & inventory are live",
-    "phase6Body": "Track cash custody end to end and run the inventory request board — each with its own comment thread. The owner dashboard and web push come last.",
+    "phase7": "v1 is complete",
+    "phase7Body": "The owner dashboard, notifications, and installable web push round out v1 — attendance, payroll, events, vendors, cash, inventory, and chat, all in English and Spanish.",
     "chatBlurb": "Message your team in channels — general, management, and custom groups.",
     "attendanceBlurb": "Mark the daily roster, or review your own days and hours.",
     "eventsBlurb": "Schedule events, assign staff, and track your bookings.",
@@ -324,6 +324,32 @@
     "errors": {
       "nameRequired": "A vendor name is required.",
       "paymentRequired": "Select a vendor and enter an amount and due date."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "rosterMarked": "Roster marked",
+    "eventsThisWeek": "Events this week",
+    "overdue": "Overdue payments",
+    "dueThisWeek": "Due this week",
+    "cashInTransit": "Cash in transit",
+    "pendingInventory": "Pending inventory",
+    "unackAdvances": "Unacknowledged advances",
+    "noPeriod": "No period generated.",
+    "todayEvents": "Today's events",
+    "noEventsToday": "No events today."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "You're all caught up.",
+    "markAllRead": "Mark all read",
+    "enablePush": "Enable push notifications",
+    "disablePush": "Disable push notifications",
+    "types": {
+      "advance": "Cash advance",
+      "payroll": "Payroll",
+      "vendor_due": "Vendor payment due",
+      "inventory": "Inventory"
     }
   },
   "comments": {

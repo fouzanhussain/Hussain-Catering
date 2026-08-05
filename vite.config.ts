@@ -9,14 +9,16 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
+      // Custom SW (src/sw.ts) so we can handle Web Push (Phase 7) alongside the
+      // workbox precache.
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.ts',
       registerType: 'prompt',
       injectRegister: 'auto',
-      workbox: {
+      injectManifest: {
         // Offline shell for read-only views (NFR: works on venue Wi-Fi).
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webmanifest}'],
-        navigateFallback: 'index.html',
-        // Never cache Supabase API/auth responses — always hit the network.
-        navigateFallbackDenylist: [/^\/api/, /supabase/],
       },
       includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
       manifest: {

@@ -416,3 +416,14 @@ export interface Comment {
   body: string
   created_at: string
 }
+
+// --- Notifications (Phase 7) ----------------------------------------------
+
+export interface AppNotification {
+  id: string
+  user_id: string
+  type: string
+  payload: { title?: string; body?: string; url?: string; [k: string]: unknown }
+  read: boolean
+  created_at: string
+}

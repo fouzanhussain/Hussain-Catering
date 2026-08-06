@@ -13,6 +13,9 @@ dev-dist/
 .env.*
 !.env.example
 
+# Claude Code local settings (per-developer; not shared)
+.claude/settings.local.json
+
 # Editor / OS
 .vscode/*
 !.vscode/extensions.json
